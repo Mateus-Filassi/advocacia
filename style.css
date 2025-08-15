@@ -1,0 +1,719 @@
+/* ===== Importação de fontes ===== */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+/* ===== Corpo e fontes ===== */
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background: #f4f6f8;
+    color: #333;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ===== Cabeçalho ===== */
+header {
+    background: linear-gradient(90deg, #003366, #005599);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+    font-family: 'Merriweather', serif;
+}
+
+header p {
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+/* ===== Main ===== */
+main {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== Seção Sobre Atualizada ===== */
+.sobre-container {
+    display: flex;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    align-items: center;
+}
+
+.sobre-imagem {
+    flex: 1 1 50%;
+    padding: 30px;
+    box-sizing: border-box;
+    order: 1;
+}
+
+.sobre-texto {
+    flex: 1 1 50%;
+    padding: 30px;
+    box-sizing: border-box;
+    text-align: right;
+    order: 2;
+}
+
+.sobre-imagem img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.sobre-imagem img:hover {
+    transform: scale(1.03);
+}
+
+.sobre-titulo {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 2em;
+    color: #1a1a1a;
+}
+
+.sobre-texto p {
+    font-size: 1.15em;
+    line-height: 1.8;
+}
+
+.sobre-texto .btn {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* ===== Carrossel de Cards ===== */
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    animation: slide 20s linear infinite;
+}
+
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 30px 20px;
+    min-width: 260px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex-shrink: 0;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+
+.card .icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+/* ===== Formulário ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input, textarea, button {
+    margin-bottom: 15px;
+    padding: 15px;
+    font-size: 1em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+button {
+    background: #003366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+}
+
+button:hover {
+    background: #005599;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 1024px) {
+    .sobre-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sobre-imagem img {
+        max-width: 80%;
+        margin: 0 auto 20px auto;
+    }
+
+    .sobre-texto {
+        text-align: center;
+        order: 2;
+    }
+
+    .carousel-track {
+        animation: none;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .sobre-texto h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* ===== Nossos Profissionais ===== */
+.profissionais-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.profissional-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 180px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex-shrink: 0;
+}
+
+.profissional-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+}
+
+.profissional-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.profissional-card img:hover {
+    transform: scale(1.05);
+}
+
+.profissional-card h3 {
+    margin: 10px 0 5px 0;
+    font-family: 'Merriweather', serif;
+    color: #003366;
+    font-size: 1.2em;
+}
+
+.profissional-card p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+.profissionais-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.profissionais-container::-webkit-scrollbar-thumb {
+    background: #003366;
+    border-radius: 4px;
+}
+
+.profissionais-container::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+/* ===== Seção Agendamento ===== */
+.agendamento-section {
+    display: flex;
+    background: #003366;
+    color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.agendamento-imagem {
+    flex: 1 1 30%;
+    padding: 10px;
+    box-sizing: border-box;
+    order: 1;
+}
+
+.agendamento-imagem img {
+    width: 70%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.agendamento-imagem img:hover {
+    transform: scale(1.03);
+}
+
+.agendamento-texto {
+    flex: 1 1 70%;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    order: 2;
+}
+
+.agendamento-texto .texto-bloco {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 70%;
+}
+
+.agendamento-texto h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 2em;
+    margin: 0 0 10px 0;
+}
+
+.agendamento-texto p {
+    font-size: 1.15em;
+    margin: 0;
+}
+
+.agendamento-texto .btn-agendar {
+    display: inline-block;
+    background: #ffcc00;
+    color: #003366;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.agendamento-texto .btn-agendar:hover {
+    background: #e6b800;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 992px) {
+    .agendamento-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .agendamento-texto {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .agendamento-texto .texto-bloco {
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .agendamento-texto .btn-agendar {
+        align-self: center;
+    }
+
+    .agendamento-imagem img {
+        width: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .agendamento-texto h2 {
+        font-size: 1.5em;
+    }
+
+    .agendamento-texto p {
+        font-size: 1em;
+    }
+
+    .agendamento-texto .btn-agendar {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .agendamento-imagem img {
+        width: 50%;
+    }
+}
+
+/* ===== Seção Fale Conosco ===== */
+.fale-conosco-section {
+    background: #003366; /* azul do tema */
+    border-radius: 12px;
+    padding: 50px 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    margin-bottom: 60px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.fale-conosco-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.fale-conosco-section h2 {
+    color: #ffcc00; /* amarelo do tema para contraste */
+    font-family: 'Merriweather', serif;
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.fale-conosco-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #ffcc00;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.fale-container {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* ===== Contatos ===== */
+.contatos-info {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contato-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #005599; /* azul mais claro que o fundo */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    color: #ffcc00; /* textos em amarelo para contraste */
+}
+
+.contato-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    background: #0073cc;
+}
+
+.contato-card .icon {
+    font-size: 2em;
+    color: #ffcc00;
+}
+
+.contato-card a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.contato-card a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* ===== Formulário de Contato ===== */
+/* ===== Fale Conosco - cores escuras para contraste ===== */
+.fale-conosco-section {
+    background: #001f3f; /* fundo mais escuro */
+}
+
+.fale-conosco-section h2 {
+    color: #ffdd33; /* título mais claro */
+}
+
+.fale-container {
+    gap: 40px; /* opcional, ajuste do espaçamento */
+}
+
+.formulario-contato {
+    flex: 1 1 45%;
+    background: #005599; /* azul mais claro que o fundo */
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #ffcc00;
+}
+
+.formulario-contato:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.formulario-contato h3 {
+    color: #ffcc00;
+    font-family: 'Merriweather', serif;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.formulario-contato form input,
+.formulario-contato form textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+.formulario-contato form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.formulario-contato form button {
+    width: 100%;
+    background: #ffcc00;
+    color: #003366;
+    font-weight: 600;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.formulario-contato form button:hover {
+    background: #ffd633;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 992px) {
+    .fale-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .contatos-info, .formulario-contato {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .fale-conosco-section h2 {
+        font-size: 1.6em;
+    }
+
+    .formulario-contato h3 {
+        font-size: 1.4em;
+    }
+
+    .contato-card .icon {
+        font-size: 1.8em;
+    }
+}
+
+/* ===== Rodapé Integrado ===== */
+footer {
+    background: #003366;
+    color: #ffcc00;
+    text-align: center;
+    padding: 20px 10px; /* menor altura */
+    border-radius: 12px 12px 0 0; /* cantos superiores arredondados */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    font-size: 0.9em;
+    margin-top: -40px; /* para aproximar do Fale Conosco */
+}
+
+/* Links no rodapé */
+footer a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 8px;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+/* Ajuste para que Fale Conosco e Rodapé pareçam integrados */
+.fale-conosco-section {
+    border-radius: 12px 12px 0 0; /* arredonda só topo */
+    margin-bottom: 0; /* remove espaçamento inferior */
+}
+
+/* Fundo fixo atrás da navbar */
+.navbar {
+    position: fixed;      /* fixa a navbar no topo da página */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;        /* muito alto para ficar acima de todos os elementos */
+    background: transparent; /* mantém transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+
+/* Navbar acima do fundo */
+.navbar {
+    position: fixed; /* fica sempre visível */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* acima de tudo */
+    background-color: #003366; /* fundo azul */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+}
+
+/* Conteúdo da navbar centralizado */
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+/* Logo com imagem ao lado do texto */
+.logo-texto {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centraliza o conjunto imagem + texto */
+    gap: 10px; /* espaço entre imagem e texto */
+    color: #fff;
+    flex: 1;
+}
+
+/* Imagem do logo */
+.logo-img {
+    width: 50px; /* ajuste o tamanho da imagem */
+    height: auto;
+}
+
+/* Conteúdo do texto */
+.logo-texto-conteudo h1 {
+    margin: 0;
+    font-size: 1.2em; /* ajusta para caber melhor */
+}
+
+.logo-texto-conteudo p {
+    margin: 2px 0 0 0;
+    font-size: 0.7em; /* diminui o tamanho da letra */
+}
+
+/* Botão WhatsApp à direita */
+.btn-whatsapp {
+    position: absolute;
+    right: 20px;
+    background-color: #25D366;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .2s, background .2s;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1ebe5d;
+    transform: scale(1.05);
+}
+
+/* Ajuste para o conteúdo não ficar escondido atrás da navbar fixa */
+body {
+    padding-top: 80px; /* ajuste conforme a altura real da navbar */
+}
+
+/* Centralizar todos os títulos h2 e h3 */
+h2, h3 {
+    text-align: center;
+}
+
+/* Títulos gerais */
+h2, h3 {
+    text-align: center;                  
+    font-family: 'Dancing Script', cursive;  
+    font-weight: 700;                     
+    font-size: 2em;                       
+    color: #1a1a1a;                       
+}
