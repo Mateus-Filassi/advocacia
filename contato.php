@@ -1,22 +1,41 @@
-<?php
-include 'conexao.php';
+<?php include 'conexao.php'; ?>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contato - Advocacia Silva</title>
+  <link rel="stylesheet" href="contato.css">
+</head>
+<body>
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitiza os dados
-    $nome = htmlspecialchars(trim($_POST['nome']));
-    $email = htmlspecialchars(trim($_POST['email']));
-    $mensagem = htmlspecialchars(trim($_POST['mensagem']));
+  <div class="container">
 
-    $sql = "INSERT INTO mensagens (nome, email, mensagem) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $nome, $email, $mensagem);
+    <!-- ESCOLHA DO ADVOGADO -->
+    <div id="advogados-section" class="section active">
+      <h2>Escolha um Advogado</h2>
+      <div class="advogados-container">
+        <div class="adv-card" onclick="abrirCalendario('junior')">
+          <img src="img/junior.png" alt="Dr. Antônio Junior">
+          <p>Dr. Antônio Junior</p>
+        </div>
+        <div class="adv-card" onclick="abrirCalendario('camila')">
+          <img src="img/CamilaNagiara.png" alt="Dra. Camila">
+          <p>Dra. Camila</p>
+        </div>
+        <!-- Adicione os outros aqui -->
+      </div>
+    </div>
 
-    if ($stmt->execute()) {
-        echo "<p style='color:green;'>Mensagem enviada com sucesso!</p>";
-    } else {
-        echo "<p style='color:red;'>Erro ao enviar: " . $conn->error . "</p>";
-    }
+    <!-- CALENDÁRIO -->
+    <div id="calendario-section" class="section">
+      <h2>Escolha um Dia</h2>
+      <div id="calendario"></div>
+      <h3 id="titulo-horarios">Horários Disponíveis</h3>
+      <div id="horarios"></div>
+    </div>
 
-    echo '<a href="index.php">Voltar</a>';
-}
-?>
+  </div>
+
+  <script src="contato.js"></script>
+</body>
+</html>

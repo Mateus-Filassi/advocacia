@@ -121,7 +121,7 @@
                     <h2>Agende sua consulta</h2>
                     <p>É simples e rápido!</p>
                 </div>
-                <a href="contato.php" class="btn-agendar">Agendar</a>
+                <a href="login.php" class="btn-agendar">Agendar</a>
             </div>
         </section>
 

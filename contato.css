@@ -1,0 +1,105 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    width: 600px;
+    text-align: center;
+  }
+  
+  h2, h3 {
+    color: #003366;
+    font-family: 'Merriweather', serif;
+  }
+  
+  .section {
+    display: none;
+  }
+  
+  .section.active {
+    display: block;
+  }
+  
+  /* ===== Advogados ===== */
+  .advogados-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .adv-card {
+    background: #f4f6f8;
+    border-radius: 10px;
+    padding: 15px;
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
+  
+  .adv-card:hover {
+    transform: scale(1.05);
+    background: #e6eefc;
+  }
+  
+  .adv-card img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  /* ===== Calendário ===== */
+  #calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin: 20px 0;
+  }
+  
+  #calendario div {
+    padding: 15px;
+    background: #003366;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #calendario div:hover {
+    background: #005599;
+  }
+  
+  #horarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  #horarios button {
+    background: #ffcc00;
+    color: #003366;
+    border: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #horarios button:hover {
+    background: #e6b800;
+  }
+  
