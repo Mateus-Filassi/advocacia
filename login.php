@@ -1,59 +1,84 @@
 <?php
+// login.php
 session_start();
-include 'conexao.php';
+include 'conexao.php'; // expõe $conn (MySQLi na 3307)
 
-// Usuário de teste
-$usuarioTeste = [
-    'email' => 'teste@teste.com',
-    'senha' => password_hash('123456', PASSWORD_DEFAULT),
-    'nome' => 'Usuário Teste'
-];
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$mensagemErro = '';
-$loginSucesso = false;
+$erro_msg = '';
+$ok_msg   = isset($_GET['sucesso']) && $_GET['sucesso'] == '1'
+          ? 'Cadastro realizado com sucesso! Faça login.'
+          : '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+  $email = trim($_POST['email'] ?? '');
+  $senha = $_POST['senha'] ?? '';
 
-    // Verifica login com usuário de teste
-    if ($email === $usuarioTeste['email'] && password_verify($senha, $usuarioTeste['senha'])) {
-        $_SESSION['usuario'] = $usuarioTeste['nome'];
-        $loginSucesso = true;
+  if ($email === '' || $senha === '') {
+    $erro_msg = 'Informe e-mail e senha.';
+  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $erro_msg = 'E-mail inválido.';
+  }
+
+  if ($erro_msg === '') {
+    try {
+      // Busca usuário pelo e-mail
+      $stmt = $conn->prepare('SELECT id, nome, email, senha_hash FROM users WHERE email = ? LIMIT 1');
+      if (!$stmt) { throw new Exception('Falha ao preparar consulta: '.$conn->error); }
+      $stmt->bind_param('s', $email);
+      $stmt->execute();
+      $res = $stmt->get_result();
+      $user = $res->fetch_assoc();
+      $stmt->close();
+
+      if ($user && password_verify($senha, $user['senha_hash'])) {
+        // sucesso: inicia sessão segura
+        session_regenerate_id(true);
+        $_SESSION['user_id']   = $user['id'];
+        $_SESSION['user_nome'] = $user['nome'];
+        $_SESSION['user_email']= $user['email'];
+    
+        // redireciona para contato.php
+        header('Location: contato.php');
+        exit;
     } else {
-        $mensagemErro = "Email ou senha incorretos!";
+        $erro_msg = 'Email ou senha incorretos!';
     }
+    
+    } catch (Throwable $e) {
+      // Em dev, mostre o erro. Em produção, troque por mensagem genérica.
+      $erro_msg = 'Erro ao autenticar: ' . $e->getMessage();
+    }
+  }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Login - Advocacia Silva</title>
-    <link rel="stylesheet" href="auth.css">
+  <meta charset="UTF-8">
+  <title>Login - Advocacia Silva</title>
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
-
-<div class="auth-container">
+  <div class="auth-container">
     <h2>Login</h2>
 
-    <?php if (!empty($mensagemErro)) { ?>
-        <p style="color:red; text-align:center;"><?php echo $mensagemErro; ?></p>
-    <?php } ?>
+    <?php if ($ok_msg): ?>
+      <div class="msg sucesso"><?= htmlspecialchars($ok_msg) ?></div>
+    <?php endif; ?>
+    <?php if ($erro_msg): ?>
+      <div class="msg erro"><?= htmlspecialchars($erro_msg) ?></div>
+    <?php endif; ?>
 
-    <?php if (!$loginSucesso) { ?>
-        <form action="" method="post">
-            <input type="email" name="email" placeholder="Seu email" required>
-            <input type="password" name="senha" placeholder="Sua senha" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <p class="switch-link">Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
-    <?php } else { ?>
-        <p>Bem-vindo, <?php echo $_SESSION['usuario']; ?>!</p>
-        <a href="contato.php"><button>Ir para Contato</button></a>
-    <?php } ?>
-</div>
+    <form action="login.php" method="post" novalidate>
+      <input type="email"    name="email" placeholder="Seu email" required value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+      <input type="password" name="senha" placeholder="Sua senha" required>
+      <button type="submit">Entrar</button>
+    </form>
 
+    <p class="switch-link">Não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
+  </div>
 </body>
 </html>
